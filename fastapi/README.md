@@ -39,14 +39,16 @@ uv sync --extra dev
 ## Run tests
 
 ```bash
-uv run pytest -q
+uv run pytest
 ```
 
 ## Run the demo
 
 ```bash
-uv run python app/app.py
+uv run python -m app
 ```
+
+> The demo runs fully offline by mocking the external payment provider call.
 
 ## Notes
 
