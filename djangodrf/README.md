@@ -44,14 +44,20 @@ uv sync --extra dev
 
 ## Run tests
 
+Run pytest from the `djangodrf/` folder.
+
 ```bash
+cd djangodrf
 uv run pytest -q
 ```
 
 ## Run the development server
 
+Run `manage.py` commands from `djangodrf/app/`.
+
 ```bash
-uv run python app/manage.py runserver
+cd djangodrf/app/
+uv run python manage.py runserver
 ```
 
 ## Notes
