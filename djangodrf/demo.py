@@ -19,6 +19,7 @@ class DemoUser:
     Minimal stand-in for a Django user.
     Keeps the demo simple and offline.
     """
+
     is_authenticated = False
     id = None
 

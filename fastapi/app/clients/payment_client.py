@@ -2,6 +2,7 @@
 
 import httpx
 from app.retries.retry_helper import retry
+from app.utils.settings import settings
 
 
 class PaymentError(RuntimeError):
@@ -9,11 +10,17 @@ class PaymentError(RuntimeError):
 
 
 class PaymentClient:
-    def __init__(self, api_key: str, base_url: str, timeout_seconds: float = 5.0):
-        self.base_url = base_url.rstrip("/")
-        self.timeout_seconds = timeout_seconds
+    def __init__(
+        self,
+        api_key: str | None = None,
+        base_url: str | None = None,
+        timeout_seconds: float | None = None,
+    ) -> None:
+        self.api_key = api_key or settings.payment_api_key
+        self.base_url = (base_url or settings.payment_base_url).rstrip("/")
+        self.timeout_seconds = timeout_seconds or settings.request_timeout_seconds
         self.client = httpx.AsyncClient(
-            headers={"Authorization": f"Bearer {api_key}"},
+            headers={"Authorization": f"Bearer {self.api_key}"},
         )
 
     async def create_payment(
@@ -23,6 +30,10 @@ class PaymentClient:
             raise ValueError("amount must be > 0")
 
         async def _call() -> dict:
+            # if we mock the provider
+            if self.base_url.startswith("mock://"):
+                return {"id": "prov_mock_123", "amount": amount, "currency": currency}
+
             r = await self.client.post(
                 f"{self.base_url}/payments",
                 json={"amount": amount, "currency": currency},

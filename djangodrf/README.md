@@ -32,12 +32,14 @@ djangodrf/
       settings.py
       urls.py
       wsgi.py
+  demo.py
   tests/
 ```
 
-## Setup (UV only)
+## Setup
 
 ```bash
+cd djangodrf
 uv venv
 uv sync --extra dev
 ```
@@ -51,13 +53,31 @@ cd djangodrf
 uv run pytest -q
 ```
 
-## Run the development server
+## Quick demo (offline)
 
-Run `manage.py` commands from `djangodrf/app/`.
+This runs a minimal end-to-end workflow (service → client → repository) without starting an HTTP server.
+
+```bash
+cd djangodrf
+uv sync --extra dev
+uv run python demo.py
+```
+
+## Run the development server and the API
+
+To run the actual HTTP endpoint:
 
 ```bash
 cd djangodrf/app/
 uv run python manage.py runserver
+```
+
+Then:
+
+```bash
+curl -X POST http://127.0.0.1:8000/api/payments/ \
+  -H "Content-Type: application/json" \
+  -d '{"amount":100,"currency":"EUR"}'
 ```
 
 ## Notes
@@ -65,3 +85,4 @@ uv run python manage.py runserver
 - This is intentionally minimal.
 - Django features not relevant to structure are omitted.
 - The focus is on clarity and boundaries.
+- The examples default to an offline provider stub (mock://...). Set PAYMENT_BASE_URL to a real URL to use a real provider.

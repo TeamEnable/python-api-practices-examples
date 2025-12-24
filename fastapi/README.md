@@ -20,18 +20,21 @@ The goal is not to showcase FastAPI features, but to show how to structure an AP
 ```
 fastapi/
   app/
+    __main__.py
+    demo.py
+    api.py
     clients/
     db/
     middleware/
     retries/
     utils/
-    app.py
   tests/
 ```
 
-## Setup (UV only)
+## Setup
 
 ```bash
+cd fastapi
 uv venv
 uv sync --extra dev
 ```
@@ -39,18 +42,38 @@ uv sync --extra dev
 ## Run tests
 
 ```bash
+cd fastapi
 uv run pytest
 ```
 
-## Run the demo
+## Quick demo (offline)
+
+This runs a minimal end-to-end workflow (service → client → repository), fully offline by mocking the external payment provider call.
 
 ```bash
+cd fastapi
+uv sync --extra dev
 uv run python -m app
 ```
 
-> The demo runs fully offline by mocking the external payment provider call.
+## Run the development server and the API
+
+To run the actual HTTP endpoint:
+
+```bash
+cd fastapi
+uv run uvicorn app.api:app --reload
+```
+
+Then:
+
+```bash
+curl -X POST http://127.0.0.1:8000/api/payments/ \
+  -H "Content-Type: application/json" \
+  -d '{"amount":100,"currency":"EUR"}'
+```
 
 ## Notes
 
 - This is not a production-ready application.
-- Structure and intent matter more than completeness.
+- The examples default to an offline provider stub (mock://...). Set PAYMENT_BASE_URL to a real URL to use a real provider.
