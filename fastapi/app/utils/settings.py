@@ -9,5 +9,9 @@ class Settings(BaseSettings):
 
     environment: str = "dev"
 
+    class Config:
+        env_prefix = ""
+        case_sensitive = False
+
 
 settings = Settings()
