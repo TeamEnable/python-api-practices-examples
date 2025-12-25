@@ -2,7 +2,7 @@
 
 import httpx
 from app.retries.retry_helper import retry
-from app.utils.settings import settings
+from app.config import settings
 
 
 class PaymentError(RuntimeError):

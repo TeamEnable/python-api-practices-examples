@@ -22,11 +22,12 @@ djangodrf/
   app/
     api/
       views.py
+      urls.py
       permissions.py
     clients/
     db/
     services/
-    utils/
+    retries/
     manage.py
     app/
       settings.py

@@ -21,13 +21,14 @@ The goal is not to showcase FastAPI features, but to show how to structure an AP
 fastapi/
   app/
     __main__.py
-    demo.py
     api.py
+    config.py
     clients/
     db/
+    services/
     middleware/
     retries/
-    utils/
+    demo.py
   tests/
 ```
 
