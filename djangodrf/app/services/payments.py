@@ -8,6 +8,7 @@ repo = PaymentsRepository()
 def create_payment(user, amount: int, currency: str) -> dict:
     # v0.1: allow anonymous calls so the examples run with curl out of the box.
     # See Chapter 10 for production auth/authorization.
+    
     is_authenticated = getattr(user, "is_authenticated", False)
     if is_authenticated is False:
         user_id = "anon"

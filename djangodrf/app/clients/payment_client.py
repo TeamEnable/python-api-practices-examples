@@ -22,6 +22,8 @@ class PaymentClient:
     def create_payment(self, amount: int, currency: str, idempotency_key: str) -> dict:
         if amount <= 0:
             raise ValueError("amount must be > 0")
+            # As a result, we will get a `500` here (for v0.1, that’s acceptable). 
+            # v0.2 improvement: handle that via input validation / serializer.
 
         # Offline mode: keep the mocking at the client boundary.
         if self.base_url.startswith("mock://"):
