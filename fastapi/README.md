@@ -20,7 +20,6 @@ The goal is not to showcase FastAPI features, but to show how to structure an AP
 ```
 fastapi/
   app/
-    __main__.py
     api.py
     config.py
     clients/
@@ -28,8 +27,8 @@ fastapi/
     services/
     middleware/
     retries/
-    demo.py
   tests/
+  demo.py
 ```
 
 ## Setup
@@ -54,7 +53,7 @@ This runs a minimal end-to-end workflow (service → client → repository), ful
 ```bash
 cd fastapi
 uv sync --extra dev
-uv run python -m app
+uv run python demo.py
 ```
 
 ## Run the development server and the API

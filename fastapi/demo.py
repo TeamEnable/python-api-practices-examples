@@ -1,3 +1,4 @@
+import asyncio
 import httpx
 import respx
 
@@ -18,3 +19,7 @@ async def main() -> None:
         stored = await create_payment(amount=100, currency="EUR")
 
     print(stored)
+
+
+if __name__ == "__main__":
+    asyncio.run(main())

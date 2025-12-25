@@ -33,8 +33,8 @@ djangodrf/
       settings.py
       urls.py
       wsgi.py
-  demo.py
   tests/
+  demo.py
 ```
 
 ## Setup
