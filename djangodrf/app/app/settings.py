@@ -95,6 +95,8 @@ REST_FRAMEWORK = {
     ],
 }
 
+APPEND_SLASH = False
+
 PAYMENT_API_KEY = os.getenv("PAYMENT_API_KEY", "dev-key")
 
 # Offline by default for v0.1 (so curl works immediately)

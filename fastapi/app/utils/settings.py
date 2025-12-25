@@ -1,4 +1,5 @@
 from pydantic_settings import BaseSettings
+from pydantic import ConfigDict
 
 
 class Settings(BaseSettings):
@@ -9,9 +10,11 @@ class Settings(BaseSettings):
 
     environment: str = "dev"
 
-    class Config:
-        env_prefix = ""
-        case_sensitive = False
+    model_config = ConfigDict(
+        env_prefix="",
+        case_sensitive=False,
+        extra="ignore",  # ignore unexpected env vars
+    )
 
 
 settings = Settings()

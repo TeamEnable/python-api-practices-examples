@@ -15,7 +15,7 @@ class CreatePaymentRequest(BaseModel):
     currency: str
 
 
-@app.post("/payments")
+@app.post("/api/payments")
 async def create_payment(payload: CreatePaymentRequest):
     if payload.amount <= 0:
         raise HTTPException(status_code=400, detail="amount must be > 0")

@@ -68,7 +68,7 @@ uv run uvicorn app.api:app --reload
 Then:
 
 ```bash
-curl -X POST http://127.0.0.1:8000/api/payments/ \
+curl -s -X POST http://127.0.0.1:8000/api/payments \
   -H "Content-Type: application/json" \
   -d '{"amount":100,"currency":"EUR"}'
 ```
