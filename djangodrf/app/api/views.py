@@ -12,7 +12,6 @@ class PaymentsView(APIView):
     def post(self, request):
         body = request.data
         result = create_payment(
-            user=request.user,
             amount=int(body["amount"]),
             currency=str(body["currency"]),
         )
