@@ -18,4 +18,5 @@ async def test_payment_client_mock_provider_returns_payload() -> None:
     assert payload["amount"] == 100
     assert payload["currency"] == "EUR"
     assert isinstance(payload["id"], str)
-    assert payload["id"]  # non-empty
+    assert payload["id"].startswith("prov_")
+
