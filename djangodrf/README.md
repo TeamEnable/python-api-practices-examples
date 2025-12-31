@@ -9,11 +9,9 @@ The purpose is to show that these habits apply equally well in Django-based APIs
 - Thin DRF views
 - Explicit service workflows
 - Client boundaries for external APIs
-- Retry + backoff + idempotency
 - Repository-style persistence boundaries
 - Explicit authorization rules
 - Centralized configuration
-- Tests that avoid full HTTP stacks where possible
 
 ## Project structure
 
@@ -27,7 +25,6 @@ djangodrf/
     clients/
     db/
     services/
-    retries/
     manage.py
     app/
       settings.py
@@ -43,15 +40,6 @@ djangodrf/
 cd djangodrf
 uv venv
 uv sync --extra dev
-```
-
-## Run tests
-
-Run pytest from the `djangodrf/` folder.
-
-```bash
-cd djangodrf
-uv run pytest
 ```
 
 ## Quick demo (offline)

@@ -9,11 +9,9 @@ The goal is not to showcase FastAPI features, but to show how to structure an AP
 - Thin endpoints that delegate to services
 - Explicit service workflows
 - Dedicated client modules for external HTTP APIs
-- Retry + backoff + idempotency at the client boundary
 - Repository-style persistence boundaries
 - Centralized configuration
 - Cross-cutting concerns kept out of endpoints
-- Tests that focus on behavior, not plumbing
 
 ## Project structure
 
@@ -26,7 +24,6 @@ fastapi/
     db/
     services/
     middleware/
-    retries/
   tests/
   demo.py
 ```
@@ -37,13 +34,6 @@ fastapi/
 cd fastapi
 uv venv
 uv sync --extra dev
-```
-
-## Run tests
-
-```bash
-cd fastapi
-uv run pytest
 ```
 
 ## Quick demo (offline)

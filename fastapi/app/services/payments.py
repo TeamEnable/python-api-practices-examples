@@ -5,10 +5,9 @@ from app.config import settings
 
 
 client = PaymentClient(
-        api_key=settings.payment_api_key,
-        base_url=settings.payment_base_url,
-        timeout_seconds=settings.request_timeout_seconds,
-    )
+    api_key=settings.payment_api_key,
+    base_url=settings.payment_base_url,
+)
 repo = PaymentsRepository()
 
 
@@ -16,6 +15,5 @@ async def create_payment(*, amount: int, currency: str) -> dict:
     payment = await client.create_payment(
         amount=amount,
         currency=currency,
-        idempotency_key="demo-payment-001",
     )
     return repo.save(payment)
